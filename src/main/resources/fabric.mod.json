@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "no_zombie_reinforcements",
+  "version": "1.0.0",
+  "name": "No Zombie Reinforcements",
+  "description": "Disables the vanilla zombie reinforcement probability for every applicable mob, including zombie variants. Server installation is sufficient.",
+  "license": "MIT",
+  "environment": "*",
+  "mixins": ["no_zombie_reinforcements.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.2",
+    "java": ">=25"
+  }
+}

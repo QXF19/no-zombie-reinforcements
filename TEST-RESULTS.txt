@@ -1,0 +1,79 @@
+PASS: Minecraft 26.1, mod=false
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.1, mod=true
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.1.1, mod=false
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.1.1, mod=true
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.1.2, mod=false
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.1.2, mod=true
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.2, mod=false
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.2, mod=true
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.3, mod=false
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+
+PASS: Minecraft 26.3, mod=true
+supplier default
+Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control

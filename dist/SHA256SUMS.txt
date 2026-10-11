@@ -1,0 +1,5 @@
+b1a96bc23c716cee780f4551d7157c8ca818b011e38d64bec772f4d94861f08a  no-zombie-reinforcements-1.0.0+mc26.1.1.jar
+7329607d3bb925a43120a3c7fba5ee867f4445f912ab468f74db31b7b237afe8  no-zombie-reinforcements-1.0.0+mc26.1.2.jar
+af30386dcf692b115d33c73d08e1d068f1e2c73802b55eabee96dac225e5800d  no-zombie-reinforcements-1.0.0+mc26.1.jar
+042dc0882ec745cbca37d397b4717f6b8d33c26c1876402bb6b76403c752ce49  no-zombie-reinforcements-1.0.0+mc26.2.jar
+3a0e69fd6314928e285ac73492cfb331838d48f5b3b01d9099833e8210346fe3  no-zombie-reinforcements-1.0.0+mc26.3.jar

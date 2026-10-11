@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "no_reinforcements_verification",
+  "version": "1.0.0",
+  "name": "No Reinforcements Verification Harness",
+  "environment": "server",
+  "entrypoints": {"main": ["dev.qxf19.noreinforcements.test.ReinforcementsTest"]},
+  "depends": {"fabricloader": ">=0.19.5", "java": ">=25"}
+}
