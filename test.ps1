@@ -20,22 +20,22 @@ foreach ($version in $MinecraftVersions) {
     $testClasses = Join-Path $root "build/$version/test-classes"
     New-Item -ItemType Directory -Path $testClasses -Force | Out-Null
     $testSources = @(Get-ChildItem (Join-Path $root 'src/test/java') -Recurse -Filter '*.java' | ForEach-Object FullName)
-    & $javac --release 25 -encoding UTF-8 -proc:none -classpath $classpath -d $testClasses @testSources
+    & $javac --release 21 -encoding UTF-8 -proc:none -classpath "$root/tools/mixin-0.8.7.jar;$classpath" -d $testClasses @testSources
     if ($LASTEXITCODE -ne 0) { throw "Verification harness compilation failed: $version" }
     Copy-Item (Join-Path $root 'src/test/resources/*') -Destination $testClasses -Recurse -Force
     $harness = Join-Path $root "build/$version/verification-harness.jar"
     & $jarTool "-J-Djava.io.tmpdir=$testClasses" --create --file $harness -C $testClasses .
     if ($LASTEXITCODE -ne 0) { throw 'Verification harness packaging failed' }
     foreach ($mode in @('baseline', 'mod')) {
-        $run = Join-Path $root "test-run/$version/$mode"
+        $run = Join-Path $root "test-run/v1.1.0/fabric/$version/$mode"
         $mods = Join-Path $run 'mods'
         New-Item -ItemType Directory -Path $mods -Force | Out-Null
         Copy-Item $harness -Destination $mods -Force
-        if ($mode -eq 'mod') { Copy-Item (Join-Path $root "dist/no-zombie-reinforcements-1.0.0+mc$version.jar") -Destination $mods -Force }
+        if ($mode -eq 'mod') { Copy-Item (Join-Path $root "dist/no-zombie-reinforcements-1.1.0-fabric+mc$version.jar") -Destination $mods -Force }
         Push-Location $run
         try {
             $gameJar = Join-Path $versionTools 'minecraft.jar'
-            & $java --sun-misc-unsafe-memory-access=allow "-Djava.io.tmpdir=$run" "-Dfabric.gameJarPath=$gameJar" "-Dfabric.gameVersion=$version" -classpath $classpath net.fabricmc.loader.impl.launch.knot.KnotServer nogui *> 'console.log'
+            & $java --sun-misc-unsafe-memory-access=allow "-Dverification.mod=$($mode -eq 'mod')" "-Djava.io.tmpdir=$run" "-Dfabric.gameJarPath=$gameJar" "-Dfabric.gameVersion=$version" -classpath $classpath net.fabricmc.loader.impl.launch.knot.KnotServer nogui *> 'console.log'
             if ($LASTEXITCODE -ne 0) {
                 Get-Content 'console.log' -Tail 60 | Write-Output
                 throw "Fabric runtime verification failed: $version ($mode)"

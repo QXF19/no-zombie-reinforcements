@@ -1,7 +1,14 @@
 {
   "required": true,
   "package": "dev.qxf19.noreinforcements.mixin",
-  "compatibilityLevel": "JAVA_25",
-  "mixins": ["AttributeInstanceMixin", "AttributeMapMixin"],
-  "injectors": {"defaultRequire": 1}
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AttributeInstanceMixin",
+    "AttributeMapMixin",
+    "ZombieMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8.7"
 }

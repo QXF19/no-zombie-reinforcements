@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.qxf19.noreinforcements.test.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LivingEntityTestMixin",
+    "MobTestMixin",
+    "ZombieTestMixin",
+    "EntityTypeTestMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8.7"
+}

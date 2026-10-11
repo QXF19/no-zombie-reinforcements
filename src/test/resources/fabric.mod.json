@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "name": "No Reinforcements Verification Harness",
   "environment": "server",
-  "entrypoints": {"main": ["dev.qxf19.noreinforcements.test.ReinforcementsTest"]},
+  "mixins": ["verification.mixins.json"],
+  "entrypoints": {"main": ["dev.qxf19.noreinforcements.test.FabricTest"]},
   "depends": {"fabricloader": ">=0.19.5", "java": ">=25"}
 }

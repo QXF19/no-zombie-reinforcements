@@ -5,12 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.SharedConstants;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.zombie.Zombie;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,13 +22,26 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import sun.misc.Unsafe;
 
 /** Runs through the real Fabric class loader, before opening a server or world. */
-public final class ReinforcementsTest implements ModInitializer {
-    @Override
-    public void onInitialize() {
+public final class ReinforcementsTest {
+    public static boolean damageTest;
+    public static boolean acceptDamage = true;
+    public static boolean forceChance;
+    public static int creationAttempts;
+    public static LivingEntity target;
+    public static void run() {
         try {
             SharedConstants.tryDetectVersion();
             Bootstrap.bootStrap();
-            boolean enabled = FabricLoader.getInstance().isModLoaded("no_zombie_reinforcements");
+            if (Boolean.getBoolean("verification.platform")) {
+                try {
+                    Class.forName("net.neoforged.neoforge.server.loading.ServerModLoader")
+                        .getMethod("load", boolean.class).invoke(null, false);
+                } catch (ClassNotFoundException forge) {
+                    Class.forName("net.minecraftforge.server.loading.ServerModLoader")
+                        .getMethod("load").invoke(null);
+                }
+            }
+            boolean enabled = Boolean.getBoolean("verification.mod");
             double expected = enabled ? 0.0 : 1.0;
             List<String> checks = new ArrayList<>();
             AttributeSupplier supplier = LivingEntity.createLivingAttributes()
@@ -67,6 +83,33 @@ public final class ReinforcementsTest implements ModInitializer {
                     AttributeModifier.Operation.ADD_VALUE));
                 equal(entity.getAttributeValue(Attributes.MAX_HEALTH), 42.0, mob + " other attributes unchanged");
                 checks.add(mob + ": entity query, direct query, base/modifier preservation, save/reload, health control");
+                setField(entity, Entity.class, "random", RandomSource.create(12345));
+                setField(entity, Entity.class, "position", Vec3.ZERO);
+                setField(entity, Entity.class, "type", net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.fromNamespaceAndPath("minecraft", "zombified_piglin")));
+                target = entity;
+                damageTest = true;
+                for (boolean forced : List.of(false, true)) {
+                    forceChance = forced;
+                    creationAttempts = 0;
+                    for (int hit = 0; hit < 1000; hit++) {
+                        if (!((Zombie)entity).hurtServer(null, null, 1.0F)) {
+                            throw new AssertionError(mob + " damage return changed");
+                        }
+                    }
+                    int expectedAttempts = enabled && !(forced && Boolean.getBoolean("verification.original")) ? 0 : 1000;
+                    if (creationAttempts != expectedAttempts) throw new AssertionError(
+                        mob + " damage path forced=" + forced + ": expected " + expectedAttempts + ", got " + creationAttempts);
+                    checks.add(mob + ": 1000 damage calls, forced chance=" + forced + ", creation attempts=" + creationAttempts);
+                }
+                forceChance = false;
+                acceptDamage = false;
+                creationAttempts = 0;
+                if (((Zombie)entity).hurtServer(null, null, 1.0F) || creationAttempts != 0) {
+                    throw new AssertionError(mob + " rejected damage result changed");
+                }
+                acceptDamage = true;
+                checks.add(mob + ": rejected damage returns false, no creation");
+                damageTest = false;
             }
             String report = "PASS: Minecraft " + SharedConstants.getCurrentVersion().id()
                 + ", mod=" + enabled + "\n" + String.join("\n", checks) + "\n";
@@ -77,6 +120,12 @@ public final class ReinforcementsTest implements ModInitializer {
             error.printStackTrace();
             System.exit(1);
         }
+    }
+
+    private static void setField(Object entity, Class<?> owner, String name, Object value) throws Exception {
+        Field field = owner.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(entity, value);
     }
 
     private static void equal(double actual, double expected, String label) {

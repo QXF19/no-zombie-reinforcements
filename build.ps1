@@ -1,8 +1,10 @@
 param(
     [string[]]$MinecraftVersions = @('26.1', '26.1.1', '26.1.2', '26.2', '26.3'),
+    [string[]]$Loaders = @('fabric', 'forge', 'neoforge'),
     [string]$JavaHome = $env:JAVA_HOME
 )
 $ErrorActionPreference = 'Stop'
+$modVersion = '1.1.0'
 $root = $PSScriptRoot
 $tools = Join-Path $root 'tools'
 $dist = Join-Path $root 'dist'
@@ -24,6 +26,13 @@ function Get-VerifiedFile([string]$Url, [string]$Path, [string]$Algorithm, [stri
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $loaderVersion = '0.19.5'
+$legacyMixin = Join-Path $tools 'mixin-0.8.7.jar'
+$legacyUrl = 'https://maven.minecraftforge.net/org/spongepowered/mixin/0.8.7/mixin-0.8.7.jar'
+if (-not (Test-Path $legacyMixin)) { Invoke-WebRequest $legacyUrl -OutFile $legacyMixin }
+$legacyResponse = (Invoke-WebRequest "$legacyUrl.sha1").Content
+if ($legacyResponse -is [byte[]]) { $legacyResponse = [Text.Encoding]::UTF8.GetString($legacyResponse) }
+$legacyDigest = ([string]$legacyResponse).Trim().Split(' ')[0]
+if ((Get-FileHash $legacyMixin -Algorithm SHA1).Hash -ne $legacyDigest) { throw 'Mixin digest mismatch' }
 $loaderJar = Join-Path $tools "fabric-loader-$loaderVersion.jar"
 $loaderBase = "https://maven.fabricmc.net/net/fabricmc/fabric-loader/$loaderVersion/fabric-loader-$loaderVersion"
 if (-not (Test-Path $loaderJar)) { Invoke-WebRequest "$loaderBase.jar" -OutFile $loaderJar }
@@ -67,20 +76,76 @@ foreach ($version in $MinecraftVersions) {
     $build = Join-Path $root "build/$version"
     $classes = Join-Path $build 'classes'
     New-Item -ItemType Directory -Path $classes -Force | Out-Null
-    $classpath = (Join-Path $versionTools 'minecraft.jar') + ';' + $loaderJar + ';' + $fabricLibs + '\*;' + $libraries + '\*'
+    $classpath = (Join-Path $versionTools 'minecraft.jar') + ';' + $legacyMixin + ';' + $libraries + '\*'
     $sources = @(Get-ChildItem (Join-Path $root 'src/main/java') -Filter '*.java' -Recurse | ForEach-Object FullName)
-    & $javac --release 25 -encoding UTF-8 -proc:none -classpath $classpath -d $classes @sources
+    & $javac --release 21 -encoding UTF-8 -proc:none -classpath $classpath -d $classes @sources
     if ($LASTEXITCODE -ne 0) { throw "Compilation failed for Minecraft $version" }
     Copy-Item (Join-Path $root 'src/main/resources/*') -Destination $classes -Recurse -Force
     $modMetaPath = Join-Path $classes 'fabric.mod.json'
     $modMeta = Get-Content $modMetaPath -Raw | ConvertFrom-Json
-    $modMeta.version = "1.0.0+mc$version"
+    $modMeta.version = "$modVersion+mc$version"
     $modMeta.depends.minecraft = $version
     $modMeta.depends.fabricloader = '>=0.19.5'
     $modMeta | ConvertTo-Json -Depth 8 | Set-Content $modMetaPath -Encoding utf8NoBOM
     Copy-Item (Join-Path $root 'LICENSE') -Destination $classes
-    $output = Join-Path $dist "no-zombie-reinforcements-1.0.0+mc$version.jar"
-    & $jarTool "-J-Djava.io.tmpdir=$build" --create --file $output --date '2026-10-11T00:00:00Z' -C $classes .
-    if ($LASTEXITCODE -ne 0) { throw "Packaging failed for Minecraft $version" }
-    Write-Output "Built $output"
+    $versions = Get-Content (Join-Path $root 'loader-versions.json') -Raw | ConvertFrom-Json
+    $row = $versions | Where-Object minecraft -eq $version
+    foreach ($loaderName in $Loaders) {
+        $package = Join-Path $build "package-$loaderName"
+        New-Item -ItemType Directory -Path $package -Force | Out-Null
+        Copy-Item (Join-Path $classes 'dev') $package -Recurse -Force
+        Copy-Item (Join-Path $classes 'no_zombie_reinforcements.mixins.json') $package -Force
+        Copy-Item (Join-Path $root 'LICENSE') $package -Force
+        $manifestText = "Manifest-Version: 1.0`n"
+        if ($loaderName -eq 'fabric') {
+            Copy-Item $modMetaPath $package -Force
+        } else {
+            $metaDir = Join-Path $package 'META-INF'
+            New-Item -ItemType Directory $metaDir -Force | Out-Null
+            $lv = $row.$loaderName
+            if (-not $lv) { throw "Missing supported $loaderName version for $version" }
+            if ($loaderName -eq 'forge') {
+                $language = 'lowcodefml'; $languageRange = "[$($lv.Split('.')[0]),)"
+                $file = 'mods.toml'; $required = 'mandatory=true'; $mixins = ''
+                $manifestText += "MixinConfigs: no_zombie_reinforcements.mixins.json`n"
+            } else {
+                $language = 'javafml'; $languageRange = '[1,)'
+                $file = 'neoforge.mods.toml'; $required = 'type="required"'
+                $mixins = "[[mixins]]`nconfig=`"no_zombie_reinforcements.mixins.json`""
+            }
+            $toml = @"
+modLoader="$language"
+loaderVersion="$languageRange"
+license="MIT"
+[[mods]]
+modId="no_zombie_reinforcements"
+version="$modVersion+mc$version"
+displayName="No Zombie Reinforcements"
+displayTest="IGNORE_SERVER_VERSION"
+description='''Disables damage-triggered zombie reinforcements. Server installation is sufficient.'''
+[[dependencies.no_zombie_reinforcements]]
+modId="$loaderName"
+$required
+versionRange="[$lv,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.no_zombie_reinforcements]]
+modId="minecraft"
+$required
+versionRange="[$version]"
+ordering="NONE"
+side="BOTH"
+[features.no_zombie_reinforcements]
+javaVersion="[25,)"
+$mixins
+"@
+            Set-Content (Join-Path $metaDir $file) $toml -Encoding utf8NoBOM
+        }
+        $manifestFile = Join-Path $build "manifest-$loaderName.mf"
+        Set-Content $manifestFile ($manifestText + "`n") -Encoding utf8NoBOM
+        $output = Join-Path $dist "no-zombie-reinforcements-$modVersion-$loaderName+mc$version.jar"
+        & $jarTool "-J-Djava.io.tmpdir=$build" --create --file $output --manifest $manifestFile --date '2026-10-11T00:00:00Z' -C $package .
+        if ($LASTEXITCODE -ne 0) { throw "Packaging failed: $loaderName Minecraft $version" }
+        Write-Output "Built $output"
+    }
 }

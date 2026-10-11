@@ -1,79 +1,229 @@
 PASS: Minecraft 26.1, mod=false
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=1000
+Zombie: 1000 damage calls, forced chance=true, creation attempts=1000
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=1000
+Husk: 1000 damage calls, forced chance=true, creation attempts=1000
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=1000
+Drowned: 1000 damage calls, forced chance=true, creation attempts=1000
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.1, mod=true
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=0
+Zombie: 1000 damage calls, forced chance=true, creation attempts=0
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=0
+Husk: 1000 damage calls, forced chance=true, creation attempts=0
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=0
+Drowned: 1000 damage calls, forced chance=true, creation attempts=0
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=0
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=0
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=0
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=0
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.1.1, mod=false
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=1000
+Zombie: 1000 damage calls, forced chance=true, creation attempts=1000
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=1000
+Husk: 1000 damage calls, forced chance=true, creation attempts=1000
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=1000
+Drowned: 1000 damage calls, forced chance=true, creation attempts=1000
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.1.1, mod=true
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=0
+Zombie: 1000 damage calls, forced chance=true, creation attempts=0
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=0
+Husk: 1000 damage calls, forced chance=true, creation attempts=0
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=0
+Drowned: 1000 damage calls, forced chance=true, creation attempts=0
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=0
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=0
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=0
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=0
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.1.2, mod=false
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=1000
+Zombie: 1000 damage calls, forced chance=true, creation attempts=1000
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=1000
+Husk: 1000 damage calls, forced chance=true, creation attempts=1000
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=1000
+Drowned: 1000 damage calls, forced chance=true, creation attempts=1000
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.1.2, mod=true
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=0
+Zombie: 1000 damage calls, forced chance=true, creation attempts=0
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=0
+Husk: 1000 damage calls, forced chance=true, creation attempts=0
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=0
+Drowned: 1000 damage calls, forced chance=true, creation attempts=0
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=0
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=0
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=0
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=0
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.2, mod=false
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=1000
+Zombie: 1000 damage calls, forced chance=true, creation attempts=1000
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=1000
+Husk: 1000 damage calls, forced chance=true, creation attempts=1000
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=1000
+Drowned: 1000 damage calls, forced chance=true, creation attempts=1000
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.2, mod=true
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=0
+Zombie: 1000 damage calls, forced chance=true, creation attempts=0
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=0
+Husk: 1000 damage calls, forced chance=true, creation attempts=0
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=0
+Drowned: 1000 damage calls, forced chance=true, creation attempts=0
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=0
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=0
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=0
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=0
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.3, mod=false
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=1000
+Zombie: 1000 damage calls, forced chance=true, creation attempts=1000
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=1000
+Husk: 1000 damage calls, forced chance=true, creation attempts=1000
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=1000
+Drowned: 1000 damage calls, forced chance=true, creation attempts=1000
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=1000
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=1000
+ZombifiedPiglin: rejected damage returns false, no creation
 
 PASS: Minecraft 26.3, mod=true
 supplier default
 Zombie: entity query, direct query, base/modifier preservation, save/reload, health control
+Zombie: 1000 damage calls, forced chance=false, creation attempts=0
+Zombie: 1000 damage calls, forced chance=true, creation attempts=0
+Zombie: rejected damage returns false, no creation
 Husk: entity query, direct query, base/modifier preservation, save/reload, health control
+Husk: 1000 damage calls, forced chance=false, creation attempts=0
+Husk: 1000 damage calls, forced chance=true, creation attempts=0
+Husk: rejected damage returns false, no creation
 Drowned: entity query, direct query, base/modifier preservation, save/reload, health control
+Drowned: 1000 damage calls, forced chance=false, creation attempts=0
+Drowned: 1000 damage calls, forced chance=true, creation attempts=0
+Drowned: rejected damage returns false, no creation
 ZombieVillager: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombieVillager: 1000 damage calls, forced chance=false, creation attempts=0
+ZombieVillager: 1000 damage calls, forced chance=true, creation attempts=0
+ZombieVillager: rejected damage returns false, no creation
 ZombifiedPiglin: entity query, direct query, base/modifier preservation, save/reload, health control
+ZombifiedPiglin: 1000 damage calls, forced chance=false, creation attempts=0
+ZombifiedPiglin: 1000 damage calls, forced chance=true, creation attempts=0
+ZombifiedPiglin: rejected damage returns false, no creation
